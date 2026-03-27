@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Selection Screen -->
+    <div id="selectionScreen" class="selection-screen">
+        <div class="container">
+            <div class="header">
+                <h1>Image Gallery Viewer</h1>
+                <p>Select an image collection to start browsing</p>
+            </div>
+
+            <div class="grid">
+                <!-- Gujarati Months -->
+                <button class="card" onclick="selectGroup('gujarati')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        <div>
+                            <h3>Gujarati Months</h3>
+                            <p>12 monthly illustrations</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-gujarati"></div>
+                </button>
+
+                <!-- Nature & Mountains -->
+                <button class="card" onclick="selectGroup('IntroductionMonths')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                        </svg>
+                        <div>
+                            <h3>Introduction to Months</h3>
+                            <p>1 photo</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-nature"></div>
+                </button>
+
+                <!-- City Architecture -->
+                <button class="card" onclick="selectGroup('city')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                            <path d="M6 12H4a2 2 0 0 0-2 2v8h4"/>
+                            <path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/>
+                            <path d="M10 6h4"/>
+                            <path d="M10 10h4"/>
+                            <path d="M10 14h4"/>
+                            <path d="M10 18h4"/>
+                        </svg>
+                        <div>
+                            <h3>City Architecture</h3>
+                            <p>5 urban photography shots</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-city"></div>
+                </button>
+
+                <!-- Ocean & Beaches -->
+                <button class="card" onclick="selectGroup('ocean')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+                            <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+                            <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+                        </svg>
+                        <div>
+                            <h3>Ocean & Beaches</h3>
+                            <p>5 coastal paradise views</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-ocean"></div>
+                </button>
+
+                <!-- Wildlife & Animals -->
+                <button class="card" onclick="selectGroup('wildlife')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="4" r="2"/>
+                            <circle cx="18" cy="8" r="2"/>
+                            <circle cx="20" cy="16" r="2"/>
+                            <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>
+                        </svg>
+                        <div>
+                            <h3>Wildlife & Animals</h3>
+                            <p>5 amazing animal portraits</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-wildlife"></div>
+                </button>
+
+                <!-- Abstract Art -->
+                <button class="card" onclick="selectGroup('abstract')">
+                    <div class="card-header">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+                        </svg>
+                        <div>
+                            <h3>Abstract Art</h3>
+                            <p>5 vibrant artistic images</p>
+                        </div>
+                    </div>
+                    <div class="preview-grid" id="preview-abstract"></div>
+                </button>
+
+                <!-- Custom Upload -->
+                <label class="card upload-card">
+                    <input type="file" id="customUpload" multiple accept="image/*" style="display: none;" onchange="handleCustomUpload(event)">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" x2="12" y1="3" y2="15"/>
+                    </svg>
+                    <h3>Custom Collection</h3>
+                    <p>Upload your own images<br><span>(Click to browse)</span></p>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer -->
+    <div id="imageViewer" class="viewer hidden">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="viewer-header">
+            <div>
+                <h2 id="viewerTitle">Collection</h2>
+                <p id="viewerCounter">Image 1 of 5</p>
+            </div>
+            <button class="close-btn" onclick="exitViewer()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6 6 18"/>
+                    <path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Main Image -->
+        <div class="image-container">
+            <img id="mainImage" src="" alt="Gallery Image">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="nav-btn nav-prev" onclick="previousImage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <button class="nav-btn nav-next" onclick="nextImage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m9 18 6-6-6-6"/>
+            </svg>
+        </button>
+
+        <!-- Navigation Dots -->
+        <div id="navDots" class="nav-dots"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
