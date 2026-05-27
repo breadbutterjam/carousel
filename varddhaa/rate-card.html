@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varddhaa Studios – Rental Rate Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:       #f5ede0;
+    --cream-light: #faf6ef;
+    --charcoal:    #332e2a;
+    --charcoal-mid:#5a524b;
+    --charcoal-dim:#7a706a;
+    --gold:        #b8914f;
+    --gold-light:  #d4ae77;
+    --warm-white:  #fffcf7;
+    --card-border: rgba(184,145,79,0.18);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--cream-light);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── COMPACT HEADER ── */
+  .header {
+    background: var(--charcoal);
+    /* padding: 20px 20px 18px; */
+    /* padding: 12px; */
+    padding: 0px 12px 0px 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 120% at 80% 50%, rgba(184,145,79,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .header-logo {
+    height: 75px;
+    width: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(184,145,79,0.3);
+    flex-shrink: 0;
+  }
+
+  .header-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .header-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header-sub {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ── TARIFF BANNER ── */
+  .tariff-banner {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    padding: 9px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .tariff-banner span {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    padding: 20px 16px 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  .section-label-text {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .section-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--card-border);
+  }
+
+  /* ── RATE CARD ── */
+  .rate-card {
+    background: var(--warm-white);
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 16px rgba(51,46,42,0.06);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(184,145,79,0.04);
+  }
+
+  .time-badge {
+    background: var(--charcoal);
+    color: var(--gold-light);
+    border-radius: 8px;
+    padding: 6px 10px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .time-badge-emoji {
+    font-size: 13px;
+    display: block;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .time-badge-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .card-header-info {}
+  .card-period {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1.2;
+  }
+  .card-days {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--charcoal-dim);
+    margin-top: 2px;
+  }
+
+  /* ── RATE ROWS ── */
+  .rate-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+  }
+  .rate-row + .rate-row {
+    border-top: 1px solid var(--card-border);
+  }
+
+  .rate-label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--charcoal-mid);
+  }
+  .rate-label small {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--charcoal-dim);
+    margin-top: 1px;
+  }
+
+  .rate-amount {
+    text-align: right;
+  }
+  .rate-amount .price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+  .rate-amount .unit {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+    text-transform: uppercase;
+  }
+
+  /* highlight row */
+  .rate-row-highlight {
+    background: var(--charcoal);
+    border-top: none !important;
+    margin: 0;
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rate-row-highlight .rate-label {
+    color: rgba(245,237,224,0.75);
+  }
+  .rate-row-highlight .rate-label small { color: rgba(245,237,224,0.45); }
+  .rate-row-highlight .price { color: var(--gold-light); }
+  .rate-row-highlight .unit  { color: rgba(212,174,119,0.6); }
+
+  .best-tag {
+    display: inline-block;
+    background: rgba(184,145,79,0.2);
+    border: 1px solid rgba(184,145,79,0.35);
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 100px;
+    margin-bottom: 3px;
+  }
+
+  /* ── TERMS ── */
+  .terms-card {
+    background: var(--warm-white);
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(51,46,42,0.05);
+  }
+
+  .terms-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--charcoal-mid);
+    line-height: 1.5;
+  }
+  .terms-row + .terms-row {
+    border-top: 1px solid var(--card-border);
+  }
+  .terms-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-wrap {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .contact-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: opacity 0.15s;
+  }
+  .contact-btn:active { opacity: 0.82; }
+  .contact-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+  .btn-whatsapp {
+    /* background: var(--charcoal); #25D366*/
+    background: linear-gradient(45deg, #25d366 0%,#1ebe5b 100%);
+    color: var(--cream);
+  }
+  .btn-instagram {
+    /* background: var(--gold); #4f5bd5 */
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    color: #fff;
+  }
+
+  .contact-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--charcoal-dim);
+    text-align: center;
+    padding: 8px 0 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--charcoal);
+    margin-top: 28px;
+    padding: 28px 20px 40px;
+    text-align: center;
+  }
+
+  .footer-emblem {
+    height: 56px;
+    width: auto;
+    margin: 0 auto 14px;
+    display: block;
+    opacity: 0.8;
+  }
+
+  .footer-brand {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .footer-tagline {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-note {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(245,237,224,0.35);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ANIMATE ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(12px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .anim { animation: fadeUp 0.55s ease both; }
+  .anim-1 { animation-delay:0.05s; }
+  .anim-2 { animation-delay:0.12s; }
+  .anim-3 { animation-delay:0.19s; }
+  .anim-4 { animation-delay:0.26s; }
+  .anim-5 { animation-delay:0.32s; }
+</style>
+</head>
+<body>
+
+<!-- COMPACT HEADER -->
+<div class="header">
+  <img src="logo.png" alt="Varddhaa Studios" class="header-logo"
+    onerror="this.outerHTML='<div style=\'font-family:DM Sans,sans-serif;font-size:18px;font-weight:600;color:#f5ede0;letter-spacing:0.02em;\'>Varddhaa<br><span style=\'font-size:10px;font-weight:300;letter-spacing:0.28em;color:#d4ae77;\'>STUDIOS</span></div>'">
+  <div class="header-divider"></div>
+  <div class="header-text">
+    <div class="header-title">Studio Rental Rate Card</div>
+    <div class="header-sub">Rate Card</div>
+  </div>
+</div>
+
+<!-- TARIFF BANNER -->
+<div class="tariff-banner">
+  <span>Revised Tariff · Effective July 2026</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- OFF-PEAK -->
+  <div class="section-label anim anim-1">
+    <span class="section-label-text">Off-Peak</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="rate-card anim anim-2">
+    <div class="card-header">
+      <div class="time-badge">
+        <span class="time-badge-emoji">🌤️</span>
+        <span class="time-badge-label">Off-Peak</span>
+      </div>
+      <div class="card-header-info">
+        <div class="card-period">10:00 AM – 4:00 PM</div>
+        <div class="card-days">Weekdays &amp; Weekends</div>
+      </div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-label">
+        Single Studio
+        <small>Per hour rental</small>
+      </div>
+      <div class="rate-amount">
+        <div class="price">₹1,000</div>
+        <div class="unit">/ hr + GST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEAK -->
+  <div class="section-label anim anim-2" style="margin-top:4px;">
+    <span class="section-label-text">Peak Hours</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="rate-card anim anim-3">
+    <div class="card-header">
+      <div class="time-badge">
+        <span class="time-badge-emoji">🌙</span>
+        <span class="time-badge-label">Peak</span>
+      </div>
+      <div class="card-header-info">
+        <div class="card-period">4:00 PM – 11:00 PM</div>
+        <div class="card-days">Weekdays &amp; Weekends</div>
+      </div>
+    </div>
+    <div class="rate-row">
+      <div class="rate-label">
+        Single Studio
+        <small>Per hour rental</small>
+      </div>
+      <div class="rate-amount">
+        <div class="price">₹1,300</div>
+        <div class="unit">/ hr + GST</div>
+      </div>
+    </div>
+    <div class="rate-row-highlight">
+      <div class="rate-label">
+        <div class="best-tag">Best Value</div>
+        Both Studios Combined
+        <small>Exclusive full-studio access</small>
+      </div>
+      <div class="rate-amount">
+        <div class="price">₹2,500</div>
+        <div class="unit">/ hr + GST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS -->
+  <div class="section-label anim anim-3" style="margin-top:4px;">
+    <span class="section-label-text">Terms &amp; Notes</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="terms-card anim anim-4">
+    <div class="terms-row">
+      <div class="terms-dot"></div>
+      Booking confirmed only upon advance payment
+    </div>
+    <div class="terms-row">
+      <div class="terms-dot"></div>
+      GST applicable on all rentals
+    </div>
+    <div class="terms-row">
+      <div class="terms-dot"></div>
+      Prior booking mandatory — walk-ins not guaranteed
+    </div>
+    <div class="terms-row">
+      <div class="terms-dot"></div>
+      Rates subject to availability
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-label anim anim-4" style="margin-top:4px;">
+    <span class="section-label-text">Get in Touch</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="contact-wrap anim anim-5">
+    <a href="https://wa.me/919999999999" class="contact-btn btn-whatsapp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      WhatsApp
+    </a>
+    <a href="https://instagram.com/varddhaastudios" class="contact-btn btn-instagram" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Instagram
+    </a>
+  </div>
+  <p class="contact-note anim anim-5">Reach out to check availability &amp; confirm your booking</p>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <img src="NewLogo_option1_dark_Small.png" alt="Varddhaa Studios" class="footer-emblem"
+    onerror="this.style.display='none'">
+  <div class="footer-brand">Varddhaa Studios</div>
+  <div class="footer-tagline">Dance · Art · Creativity · Expression</div>
+  <div class="footer-note">
+    All prices exclusive of GST &nbsp;·&nbsp; Rates valid from July 2026<br>
+    Subject to availability and change without prior notice
+  </div>
+</div>
+
+</body>
+</html>
