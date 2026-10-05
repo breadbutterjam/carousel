@@ -25,16 +25,18 @@
     --band-width: 21.5%;                /* percent: used on the card itself */
     --band-bg: #235200;
     --band-text: #ffffff;
-    --month-font-size: 9cqw;
+    --month-font-size: 9cqw;            /* Gujarati name (Canva 41.6) */
+    --month-en-font-size: 3.5cqw;       /* English name (Canva 16 -> same ratio to the Gujarati size) */
+    --month-name-gap: 2.5cqw;           /* space between the two names */
     --month-text-rotation: 180deg;      /* 180deg = reads bottom-to-top, 0deg = top-to-bottom */
 
     /* Festival rows (cqw = % of card width, so everything scales together) */
     --festival-pad-left: 5.5cqw;
-    --festival-pad-right: 10cqw;
-    --festival-gap: 2cqw;
+    --festival-pad-right: 4cqw;
+    --festival-gap: 1.5cqw;
     --dates-font-size: 2.6cqw;
     --name-font-size: 4.1cqw;
-    --festival-image-width: 21cqw;
+    --festival-image-width: 19cqw;
     --festival-image-height: 13.5cqw;
 
     /* Fonts */
@@ -197,17 +199,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--month-name-gap);
 }
 
-.month-name {
+.month-name,
+.month-name-en {
     writing-mode: vertical-rl;
     transform: rotate(var(--month-text-rotation));
     color: var(--band-text);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.month-name {
     font-family: var(--font-gujarati);
     font-size: var(--month-font-size);
     font-weight: 700;
-    line-height: 1;
-    white-space: nowrap;
+}
+
+.month-name-en {
+    font-family: var(--font-card);
+    font-size: var(--month-en-font-size);
+    font-weight: 400;
 }
 
 /* --- Festival rows (share the height equally, centred in each slot) --- */

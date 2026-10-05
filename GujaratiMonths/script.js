@@ -47,11 +47,12 @@ function renderMonthCard(month) {
     const card = el('article', 'month-card');
     card.setAttribute('aria-label', month.englishMonthName);
 
-    // Left band with the Gujarati month name
+    // Left band: Gujarati month name (large) beside the English name (small)
     const band = el('div', 'month-band');
     const name = el('h2', 'month-name', month.monthName);
     name.lang = 'gu';
     band.appendChild(name);
+    band.appendChild(el('p', 'month-name-en', month.englishMonthName));
     card.appendChild(band);
 
     // Festival rows

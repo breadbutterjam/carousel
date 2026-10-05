@@ -17,16 +17,131 @@ const FESTIVAL_IMAGE_DIR = 'images/';
 // Months are listed in Gujarati calendar order (Kartak -> Aaso).
 // Reorder the array to change slide order.
 const GUJARATI_MONTHS = [
-    { monthName: "કારતક",   englishMonthName: "Kartak",   festivals: [] },
-    { monthName: "માગશર",   englishMonthName: "Magshar",  festivals: [] },
+    { monthName: "કારતક",   englishMonthName: "Kartak",   festivals: [
+        {
+            dates: "Sud Ekam",
+            name: "Saalmubarak",
+            image: "Saalmubarak.png"
+        },
+        {
+            dates: "Sud Satam",
+            name: "Jalaram Jayanti",
+            image: "JalaramJayanti.png"
+        },
+        {
+            dates: "Sud Ekadashi",
+            name: "Dev Uthi Ekadashi",
+            image: "DevUthiEkadashi.png"
+        },
+        {
+            dates: "Poonam",
+            name: "Dev Diwali / Tulsi Vivah",
+            image: "DevDiwali.png"
+        },
+
+    ] },
+    { monthName: "માગશર",   englishMonthName: "Magshar",  festivals: [
+        {
+            dates: "Poonam",
+            name: "Dattatrey Jayanti",
+            image: "DattatreyJayanti.png"
+        }
+    ] },
     { monthName: "પોષ",     englishMonthName: "Posh",     festivals: [] },
-    { monthName: "મહા",     englishMonthName: "Maha",     festivals: [] },
-    { monthName: "ફાગણ",    englishMonthName: "Fagan",    festivals: [] },
-    { monthName: "ચૈત્ર",   englishMonthName: "Chaitra",  festivals: [] },
-    { monthName: "વૈશાખ",   englishMonthName: "Vaishakh", festivals: [] },
-    { monthName: "જેઠ",     englishMonthName: "Jeth",     festivals: [] },
-    { monthName: "અષાઢ",    englishMonthName: "Ashadh",   festivals: [] },
-    { monthName: "શ્રાવણ",   englishMonthName: "Shravan",  festivals: [] },
+    { monthName: "મહા",     englishMonthName: "Maha",     festivals: [
+        {
+            dates: "vad - chaudas",
+            name: "Mahashivratri",
+            image: "MahaShivratri.png"
+        }
+    ] },
+    { monthName: "ફાગણ",    englishMonthName: "Fagan",    festivals: [
+        {
+            dates: "Poonam",
+            name: "Holi",
+            image: "Holi.png"
+        },
+        {
+            dates: "Vad - Ekam",
+            name: "Dulheti",
+            image: ""
+        }
+    ] },
+    { monthName: "ચૈત્ર",   englishMonthName: "Chaitra",  festivals: [
+         {
+            dates: "Sud - Ekam",
+            name: "Gudi Padvo",
+            image: "GudiPadva.png"
+        },
+         {
+            dates: "Poonam",
+            name: "Chaitri Purnima",
+            image: ""
+        },
+         {
+            dates: "Sud Ekam to Nom",
+            name: "Chaitri Navratri",
+            image: "Navratri.png"
+        },
+         {
+            dates: "Sud - Nom",
+            name: "Ram Navmi",
+            image: "RamNavmi.png"
+        }
+    ] },
+    { monthName: "વૈશાખ",   englishMonthName: "Vaishakh", festivals: [
+        {
+            dates: "Sud - treej",
+            name: "Akha treej",
+            image: "AkhaTreej.png"
+        },
+        {
+            dates: "Poonam",
+            name: "Buddha Purnima",
+            image: "BuddhaPurnima.png"
+        }
+    ] },
+    { monthName: "જેઠ",     englishMonthName: "Jeth",     festivals: [
+        {
+            dates: "Sud - Ekadashi",
+            name: "Bhim Ekadashi",
+            image: "BhimEkadashi.png"
+        },
+        {
+            dates: "Poonam",
+            name: "Vad Savitri",
+            image: "VadSavitiri.png"
+        }
+    ] },
+    { monthName: "અષાઢ",    englishMonthName: "Ashadh",   festivals: [
+        {
+            dates: "Sud - Ekam",
+            name: "Kutchi New Year",
+            image: ""
+        },
+        {
+            dates: "Poonam",
+            name: "Guru Purnima",
+            image: "GuruPurnima.png"
+        }
+    ] },
+    { monthName: "શ્રાવણ",   englishMonthName: "Shravan",  festivals: [
+        {
+            dates: "Poonam",
+            name: "Rakshabandhan",
+            image: "Rakshabandhan.png"
+        },
+        {
+            dates: "Vad - Ashhtami",
+            name: "Janmashtami",
+            image: "Janmashtami.png"
+        },
+        {
+            dates: "Vad - Baras",
+            name: "Paryushan begins",
+            image: "Paryushan.png"
+        }
+    ] },
     {
         monthName: "ભાદરવો",
         englishMonthName: "Bhadarvo",
@@ -43,5 +158,27 @@ const GUJARATI_MONTHS = [
             }
         ]
     },
-    { monthName: "આસો",     englishMonthName: "Aaso",     festivals: [] }
+    { monthName: "આસો",     englishMonthName: "Aaso",     festivals: [
+        {
+            dates: "Sud Ekam to Nom",
+            name: "Navratri",
+            image: "Navratri.png"
+        },
+        {
+            dates: "Sud Dasam",
+            name: "Dusshera",
+            image: "Dusshera.png"
+        },
+        {
+            dates: "Poonam",
+            name: "Sharad Purnima",
+            image: "SharadPoonam.png"
+        },
+        {
+            dates: "Amas",
+            name: "Diwali",
+            image: "Diwali.png"
+        }
+    ] }
 ];
+
