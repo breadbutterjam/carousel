@@ -3,18 +3,18 @@ const imageGroups = {
     gujarati: {
         name: 'Gujarati Months',
         images: [
-            'GujMonths/1.png',
-            'GujMonths/2.png',
-            'GujMonths/3.png',
-            'GujMonths/4.png',
-            'GujMonths/5.png',
-            'GujMonths/6.png',
-            'GujMonths/7.png',
-            'GujMonths/8.png',
-            'GujMonths/9.png',
-            'GujMonths/10.png',
-            'GujMonths/11.png',
-            'GujMonths/12.png'
+            'GujMonths/1.a.png',
+            'GujMonths/2.a.png',
+            'GujMonths/3.a.png',
+            'GujMonths/4.a.png',
+            'GujMonths/5.a.png',
+            'GujMonths/6.a.png',
+            'GujMonths/7.a.png',
+            'GujMonths/8.a.png',
+            'GujMonths/9.a.png',
+            'GujMonths/10.a.png',
+            'GujMonths/11.a.png',
+            'GujMonths/12.a.png'
         ]
     },
     IntroductionMonths: {
