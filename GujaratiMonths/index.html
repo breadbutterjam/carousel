@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gujarati Months</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Gujarati:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Carousel -->
+    <div id="carousel" class="viewer">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="viewer-header">
+            <h2 id="viewerTitle">Gujarati Months</h2>
+            <p id="viewerCounter">1 of 12</p>
+        </div>
+
+        <!-- Month card (generated from data.js) -->
+        <div class="stage">
+            <div id="cardStage" class="card-stage"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="nav-btn nav-prev" onclick="previousMonth()" aria-label="Previous month">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <button class="nav-btn nav-next" onclick="nextMonth()" aria-label="Next month">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m9 18 6-6-6-6"/>
+            </svg>
+        </button>
+
+        <!-- Navigation Dots -->
+        <div id="navDots" class="nav-dots"></div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

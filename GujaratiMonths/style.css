@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =============================================================
+   Design tokens — tweak these to restyle without touching rules
+   ============================================================= */
+:root {
+    /* Page / viewer chrome */
+    --viewer-bg: #000;
+    --viewer-text: #fff;
+    --viewer-text-muted: #cbd5e1;
+    --accent: #3b82f6;
+    --progress-track: #1e293b;
+    --stage-padding: 5rem;
+
+    /* Card shell */
+    --card-ratio: 1754 / 1240;          /* matches the original A4-landscape PNGs */
+    --card-bg: #ffffff;
+    --card-text: #000000;
+
+    /* Month band (left) */
+    --band-width: 21.5%;                /* percent: used on the card itself */
+    --band-bg: #235200;
+    --band-text: #ffffff;
+    --month-font-size: 9cqw;
+    --month-text-rotation: 180deg;      /* 180deg = reads bottom-to-top, 0deg = top-to-bottom */
+
+    /* Festival rows (cqw = % of card width, so everything scales together) */
+    --festival-pad-left: 5.5cqw;
+    --festival-pad-right: 10cqw;
+    --festival-gap: 2cqw;
+    --dates-font-size: 2.6cqw;
+    --name-font-size: 4.1cqw;
+    --festival-image-width: 21cqw;
+    --festival-image-height: 13.5cqw;
+
+    /* Fonts */
+    --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-gujarati: 'Noto Sans Gujarati', sans-serif;
+    --font-card: 'Instrument Sans', var(--font-ui);
+}
+
+body {
+    font-family: var(--font-ui);
+    background: var(--viewer-bg);
+    overflow: hidden;
+}
+
+/* =============================================================
+   Carousel chrome
+   ============================================================= */
+.viewer {
+    position: fixed;
+    inset: 0;
+    background: var(--viewer-bg);
+    color: var(--viewer-text);
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--progress-track);
+    z-index: 20;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease-out;
+    width: 0%;
+}
+
+.viewer-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.viewer-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.viewer-header p {
+    font-size: 0.875rem;
+    color: var(--viewer-text-muted);
+}
+
+.stage {
+    container-type: size; /* lets the card size itself to the space available */
+    width: 100%;
+    height: 100%;
+    padding: var(--stage-padding);
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--viewer-text);
+    z-index: 10;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn svg {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+}
+
+.nav-prev {
+    left: 1.5rem;
+}
+
+.nav-next {
+    right: 1.5rem;
+}
+
+.nav-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.dot.active {
+    background: var(--viewer-text);
+    width: 2rem;
+}
+
+/* =============================================================
+   Month card (generated from data.js)
+   ============================================================= */
+.card-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.month-card {
+    container-type: inline-size;
+    /* Largest card that fits the stage while keeping the aspect ratio */
+    width: min(100cqw, calc(100cqh * (1754 / 1240)));
+    aspect-ratio: var(--card-ratio);
+    display: grid;
+    grid-template-columns: var(--band-width) 1fr;
+    background: var(--card-bg);
+    color: var(--card-text);
+    font-family: var(--font-card);
+    overflow: hidden;
+}
+
+/* --- Left band --- */
+.month-band {
+    background: var(--band-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.month-name {
+    writing-mode: vertical-rl;
+    transform: rotate(var(--month-text-rotation));
+    color: var(--band-text);
+    font-family: var(--font-gujarati);
+    font-size: var(--month-font-size);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* --- Festival rows (share the height equally, centred in each slot) --- */
+.festival-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--festival-pad-right) 0 var(--festival-pad-left);
+}
+
+.festival {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--festival-image-width);
+    align-items: center;
+    gap: var(--festival-gap);
+}
+
+.festival--no-image {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.festival-dates {
+    font-size: var(--dates-font-size);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.festival-name {
+    font-size: var(--name-font-size);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.festival-media {
+    width: var(--festival-image-width);
+    height: var(--festival-image-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.festival-media img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* =============================================================
+   Responsive
+   ============================================================= */
+@media (max-width: 768px) {
+    :root {
+        --stage-padding: 4rem 1rem;
+    }
+
+    .nav-prev {
+        left: 0.5rem;
+    }
+
+    .nav-next {
+        right: 0.5rem;
+    }
+
+    .nav-btn {
+        padding: 0.75rem;
+    }
+
+    .nav-btn svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
