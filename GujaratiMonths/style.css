@@ -32,12 +32,12 @@
 
     /* Festival rows (cqw = % of card width, so everything scales together) */
     --festival-pad-left: 5.5cqw;
-    --festival-pad-right: 4cqw;
-    --festival-gap: 1.5cqw;
+    --festival-pad-right: 3cqw;
+    --festival-row-pad: 1.5cqw;          /* breathing room above/below each row */
+    --text-image-gap: 3cqw;              /* space between the text and its image */
     --dates-font-size: 2.6cqw;
     --name-font-size: 4.1cqw;
-    --festival-image-width: 19cqw;
-    --festival-image-height: 13.5cqw;
+    --festival-image-min-width: 12cqw;   /* images always get at least this much; long names wrap to make room */
 
     /* Fonts */
     --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -223,7 +223,11 @@ body {
     font-weight: 400;
 }
 
-/* --- Festival rows (share the height equally, centred in each slot) --- */
+/* --- Festival rows ---
+   Rows share the card height equally. In each row the text takes only the
+   width it needs, and the image sits a fixed gap after it, growing into all
+   remaining space (never beyond its own natural size). Long names wrap
+   rather than squeeze the image below its minimum width. */
 .festival-list {
     display: flex;
     flex-direction: column;
@@ -231,15 +235,17 @@ body {
 }
 
 .festival {
-    flex: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) var(--festival-image-width);
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
     align-items: center;
-    gap: var(--festival-gap);
+    gap: var(--text-image-gap);
+    padding: var(--festival-row-pad) 0;
 }
 
-.festival--no-image {
-    grid-template-columns: minmax(0, 1fr);
+.festival-text {
+    flex: 0 1 auto;                      /* as wide as its content, shrinks (wraps) only if needed */
+    min-width: 0;
 }
 
 .festival-dates {
@@ -256,16 +262,20 @@ body {
 }
 
 .festival-media {
-    width: var(--festival-image-width);
-    height: var(--festival-image-height);
+    flex: 1 1 var(--festival-image-min-width);
+    min-width: var(--festival-image-min-width);
+    align-self: stretch;                 /* full row height, so images can use it */
+    min-height: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;         /* image hugs the text, not the card edge */
 }
 
 .festival-media img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100%;                     /* fill the free space ... */
+    max-height: 100%;                    /* ... and the row height ... */
+    width: auto;                         /* ... but never upscale past */
+    height: auto;                        /* the image's original size */
     object-fit: contain;
 }
 
